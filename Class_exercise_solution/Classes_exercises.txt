@@ -1,0 +1,141 @@
+// 1.1 
+class ZooAnimal
+{
+private:
+char *name;
+int cageNumber;
+int weightDate;
+int weight;
+public:
+void Create (char*, int, int, int); // Missing prototyoe for the create function
+void Destroy (); // destroy function
+char* reptName ();
+int daysSinceLastWeighed (int today);
+};
+
+// 1.2 
+void ZooAnimal::Destroy ()
+{
+delete [] name;
+}
+// -------- member function to return the number of days
+char* ZooAnimal::reptName ()
+{
+return name;
+}
+// -------- member function to return the animal's name
+// -------- since the animal was last weighed
+    int ZooAnimal::daysSinceLastWeighed (int today) //Function header 
+   {
+    int startday, thisday;
+    thisday = today/100*30 + today - today/100*100;
+    startday = weightDate/100*30 + weightDate - weightDate/100*100;
+    if (thisday < startday) 
+        thisday += 360;
+    return (thisday-startday);
+   }
+
+//1.3
+class ZooAnimal
+{
+private:
+char *name;
+int cageNumber;
+int weightDate;
+int weight;
+public:
+void Create (char*, int, int, int); // create function
+void Destroy (); // destroy function
+char* reptName ();
+int daysSinceLastWeighed (int today);
+};
+// -------- member function to return the animal's name
+char* ZooAnimal::reptName ()
+{
+return name;
+}
+// ========== an application to use the ZooAnimal class
+void main ()
+{
+ZooAnimal bozo;
+bozo.Create ("Bozo", 408, 1027, 400);
+cout << "This animal's name is " << bozo.reptName () << endl; // Modified cout 
+bozo.Destroy ();
+}
+
+
+//2.1
+enum scale {ounces, kilograms};
+class ZooAnimal
+{
+private:
+char *name;
+int cageNumber;
+int weightDate;
+int weight;
+public:
+void Create (char*, int, int, int); // create function
+void Destroy (); // destroy function
+void changeWeight (int pounds);
+void changeWeightDate (int today);
+char* reptName ();
+int reptWeight ();
+void reptWeight (scale which);
+inline int reptWeightDate ();
+int daysSinceLastWeighed (int today);
+};
+
+//Function to return the day the animal was last weighed
+   inline int ZooAnimal::reptWeightDate ()
+   {
+    return weightDate;
+   }
+
+//2.2
+enum scale {ounces, kilograms};
+class ZooAnimal
+{
+private:
+char *name;
+int cageNumber;
+int weightDate;
+int weight;
+public:
+void Create (char*, int, int, int); // create function
+void Destroy (); // destroy function
+inline void changeWeightDate (int today) {weightDate = today;}; //Modified line
+inline void changeWeightDate (int today);
+char* reptName ();
+int reptWeight ();
+void reptWeight (scale which);
+int reptWeightDate ();
+int daysSinceLastWeighed (int today);
+};
+
+
+//2.3
+class ZooAnimal
+{
+private:
+char *name;
+int cageNumber;
+int weightDate;
+int weight;
+ZooAnimal *mother;
+public:
+void Create (char*, int, int, int); // create function
+void Destroy (); // destroy function
+void isMotherOf (ZooAnimal&);
+void changeWeight (int pounds);
+void changeWeightDate (int today);
+char* reptName ();
+int reptWeight ();
+void reptWeight (scale which);
+inline int reptWeightDate () {return weightDate;};
+int daysSinceLastWeighed (int today);
+};
+// Function to create a pointer from object critter to its mother
+   void ZooAnimal::isMotherOf (ZooAnimal& critter)
+   {
+    critter.mother = this;
+   }
